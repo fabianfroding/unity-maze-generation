@@ -48,7 +48,7 @@ public class MazeManager : MonoBehaviour
             // Get pos of node in list of generated nodes, to check adjacent nodes.
             int currentNodeIdx = nodes.IndexOf(path[path.Count - 1]);
             int currentNodeX = currentNodeIdx / mazeSize.y;
-            int currentNodeY = currentNodeIdx % mazeSize.x;
+            int currentNodeY = currentNodeIdx % mazeSize.y;
 
             // Check if it is on the right wall, if so there is none next to it so it shouldn't go through the check.
             if (currentNodeX < mazeSize.x - 1)
