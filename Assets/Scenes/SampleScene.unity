@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useRandomActiveNode: 1
-  useSteps: 1
+  useSteps: 0
   stepWaitTime: 0.5
   steps: 500
   currentSteps: 0

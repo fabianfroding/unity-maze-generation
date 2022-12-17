@@ -64,13 +64,14 @@ public class GrowingTreeMazeManager : MonoBehaviour
             // Choose "active" node to check neighbors
             MazeNode currentNode;
 
-            // Select newest node
             if (useRandomActiveNode)
             {
+                // Select random node
                 currentNode = this.path[UnityEngine.Random.Range(0, this.path.Count)];
             }
             else
             {
+                // Select newest node
                 currentNode = path[path.Count - 1];
             }
 
@@ -89,7 +90,6 @@ public class GrowingTreeMazeManager : MonoBehaviour
                     neighborPos.y > mazeSize.y - 1 // Top
                     )
                 {
-                    // print(neighborPos + "   > Hit edge");
                     continue;
                 }
                 // arr to grid
@@ -110,7 +110,6 @@ public class GrowingTreeMazeManager : MonoBehaviour
                     // indicate new neighbor found
                     // break from loop
                     unvisitedNeighbor = neighbor;
-                    print("CURRENT - " + currentNode.mazePos + "NEIGHBOR: " + neighbor.mazePos);
                     
                     int dirkey = getDirKey(randomizedDirs[i]);
                     CreatePath(currentNode, neighbor, dirkey);
@@ -134,7 +133,7 @@ public class GrowingTreeMazeManager : MonoBehaviour
         }
         else if (this.path.Count == 0 && !finishedMaze)
         {
-            print("Path empty!");
+            print("Finished");
             this.finishedMaze = true;
         }
     }
@@ -204,25 +203,25 @@ public class GrowingTreeMazeManager : MonoBehaviour
         switch (dir)
         {
             case 0:
-                print("GOING UP");
+                // print("GOING UP");
 
                 neighbor.SetWallActive(3, false);  // Remove bot wall of neighbour node
                 currentNode.SetWallActive(2, false); // Remove top wall of current node
                 break;
             case 1:
-                print("GOING DOWN");
+                // print("GOING DOWN");
 
                 neighbor.SetWallActive(2, false); // Remove top wall of neighbour node
                 currentNode.SetWallActive(3, false); // Remove bot wall of current node
                 break;
             case 2:
-                print("GOING LEFT");
+                // print("GOING LEFT");
 
                 neighbor.SetWallActive(0, false); // Remove right wall of neighbour
                 currentNode.SetWallActive(1, false); // Remove left wall of current node
                 break;
             case 3:
-                print("GOING RIGHT");
+                // print("GOING RIGHT");
                 neighbor.SetWallActive(1, false); // Remove left wall of neighbour node
                 currentNode.SetWallActive(0, false); // Remove right wall of current node
                 break;
