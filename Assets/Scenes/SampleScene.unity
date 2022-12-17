@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 106350671}
   - component: {fileID: 106350672}
+  - component: {fileID: 106350673}
   m_Layer: 0
   m_Name: MazeManager
   m_TagString: Untagged
@@ -162,7 +163,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106350670}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d5e380a5bdede4fbf43ab0f103e003, type: 3}
   m_Name: 
@@ -170,6 +171,25 @@ MonoBehaviour:
   nodePrefab: {fileID: 4027142190708988997, guid: 8adac624f1be3834099109fa0f11fec4, type: 3}
   mazeSize: {x: 3, y: 8}
   generationTick: 0.05
+--- !u!114 &106350673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106350670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c12b1c4eeb148c4fb1be89528ba487f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useRandomActiveNode: 1
+  useSteps: 1
+  stepWaitTime: 0.5
+  steps: 500
+  currentSteps: 0
+  mazeSize: {x: 20, y: 11}
+  nodePrefab: {fileID: 4027142190708988997, guid: 8adac624f1be3834099109fa0f11fec4, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

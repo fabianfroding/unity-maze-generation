@@ -6,6 +6,14 @@ public class MazeNode : MonoBehaviour
 {
     [SerializeField] GameObject[] walls;
     [SerializeField] MeshRenderer floor;        // Used to show the state of the node.
+    
+    [SerializeField] public Vector2 mazePos;
+    [SerializeField] public bool isVisited;
+
+    public void SetMazePos(Vector2 pos)
+    {
+        this.mazePos = pos;
+    }
 
     public void SetState(ENodeState nodeState)
     {
