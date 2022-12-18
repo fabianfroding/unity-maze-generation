@@ -36,15 +36,6 @@ public class GrowingTreeMazeManager : MonoBehaviour
     // For half-new-half-rand
     bool use_random = true;
 
-
-    private void Start()
-    {
-    }
-
-    private void Update() 
-    {
-    }
-
     public void StartGTMaze()
     {
         this.nodes = GenerateGrid(mazeSize);
@@ -303,12 +294,5 @@ public class GrowingTreeMazeManager : MonoBehaviour
 
         else { return -1; }
     }
-
-    // IEnumerator Wait()
-    // {
-    //     yield return new WaitForSeconds(this.stepWaitTime);
-
-    //     //Put code after waiting here
-    // }
 
 }
