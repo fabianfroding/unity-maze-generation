@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class GrowingTreeMazeManager : MonoBehaviour
 {
-    public enum ACTIVE_SELECTION_METHOD { RANDOM, NEWEST, OLDEST}
+    public enum ACTIVE_SELECTION_METHOD { RANDOM, NEWEST, OLDEST, HALF_NEWEST_HALF_RANDOM}
 
     private Dictionary<int, Vector2> DIRECTIONS = new Dictionary<int, Vector2>
     {
@@ -20,7 +20,7 @@ public class GrowingTreeMazeManager : MonoBehaviour
 
     [SerializeField] private ACTIVE_SELECTION_METHOD cellSelectMethod = ACTIVE_SELECTION_METHOD.RANDOM;
     [SerializeField] bool useSteps;
-    [SerializeField] float stepWaitTime = 0.03f;
+    // [SerializeField] float stepWaitTime = 0.03f;
     [SerializeField] int steps;
     [SerializeField] int currentSteps;
 
@@ -33,6 +33,8 @@ public class GrowingTreeMazeManager : MonoBehaviour
     List<MazeNode> path;
     bool finishedMaze = false;
 
+    // For half-new-half-rand
+    bool use_random = true;
 
 
     private void Start()
@@ -100,6 +102,18 @@ public class GrowingTreeMazeManager : MonoBehaviour
             case ACTIVE_SELECTION_METHOD.OLDEST:
                 currentNode = path[0];
                 break;
+            case ACTIVE_SELECTION_METHOD.HALF_NEWEST_HALF_RANDOM:
+                if (this.use_random)
+                {
+                    currentNode = this.path[UnityEngine.Random.Range(0, this.path.Count)];
+                }
+                else {
+                    currentNode = path[path.Count - 1];
+                }
+                this.use_random = !this.use_random;
+
+                break;
+
             default:
                 currentNode = this.path[UnityEngine.Random.Range(0, this.path.Count)];
                 break;
@@ -251,11 +265,11 @@ public class GrowingTreeMazeManager : MonoBehaviour
         else { return -1; }
     }
 
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(this.stepWaitTime);
+    // IEnumerator Wait()
+    // {
+    //     yield return new WaitForSeconds(this.stepWaitTime);
 
-        //Put code after waiting here
-    }
+    //     //Put code after waiting here
+    // }
 
 }
