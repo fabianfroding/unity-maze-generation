@@ -2,18 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EMAZEGEN_METHOD { RECURSIVE_BACKTRACKER, GROWING_TREE }
+
 public class MazeManager : MonoBehaviour
 {
+    [SerializeField] public EMAZEGEN_METHOD mazeGenerationMethod = EMAZEGEN_METHOD.RECURSIVE_BACKTRACKER;
     [SerializeField] MazeNode nodePrefab;
     [SerializeField] Vector2Int mazeSize;
     [SerializeField] float generationTick = 0.05f;
+    // [SerializeField] bool generationTick = 0.05f;
+
+    private GrowingTreeMazeManager growingTreeManager;
+
 
     #region Unity Callback Functions
     private void Start()
     {
-        StartCoroutine(GenerateMaze(mazeSize));
+        this.growingTreeManager = GetComponent<GrowingTreeMazeManager>();
+
+        switch (mazeGenerationMethod)
+        {
+            case EMAZEGEN_METHOD.RECURSIVE_BACKTRACKER:
+                StartCoroutine(GenerateMaze(mazeSize));
+                break;
+            case EMAZEGEN_METHOD.GROWING_TREE:
+                growingTreeManager.StartGTMaze();
+                StartCoroutine(growingTreeManager.IEnumGenerateMaze());
+                break;
+        }
     }
     #endregion
+
 
     private IEnumerator GenerateMaze(Vector2Int mazeSize)
     {

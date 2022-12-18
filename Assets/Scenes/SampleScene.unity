@@ -163,11 +163,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106350670}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d5e380a5bdede4fbf43ab0f103e003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mazeGenerationMethod: 1
   nodePrefab: {fileID: 4027142190708988997, guid: 8adac624f1be3834099109fa0f11fec4, type: 3}
   mazeSize: {x: 3, y: 8}
   generationTick: 0.05
@@ -183,7 +184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c12b1c4eeb148c4fb1be89528ba487f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellSelectMethod: 3
+  cellSelectMethod: 0
+  generationTick: 0.01
   useSteps: 0
   steps: 500
   currentSteps: 0

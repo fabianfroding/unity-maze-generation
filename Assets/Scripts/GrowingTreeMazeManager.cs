@@ -19,18 +19,18 @@ public class GrowingTreeMazeManager : MonoBehaviour
     
 
     [SerializeField] private ACTIVE_SELECTION_METHOD cellSelectMethod = ACTIVE_SELECTION_METHOD.RANDOM;
+    [SerializeField] float generationTick = 0.03f;
     [SerializeField] bool useSteps;
-    // [SerializeField] float stepWaitTime = 0.03f;
     [SerializeField] int steps;
     [SerializeField] int currentSteps;
 
     [SerializeField] Vector2Int mazeSize;
     [SerializeField] MazeNode nodePrefab;
     
-    List<MazeNode> nodes;
-    List<MazeNode> completedNodes;
+    private List<MazeNode> nodes;
+    private List<MazeNode> path;
+    private List<MazeNode> completedNodes;
 
-    List<MazeNode> path;
     bool finishedMaze = false;
 
     // For half-new-half-rand
@@ -39,7 +39,14 @@ public class GrowingTreeMazeManager : MonoBehaviour
 
     private void Start()
     {
-        // StartCoroutine(GenerateMaze(mazeSize));
+    }
+
+    private void Update() 
+    {
+    }
+
+    public void StartGTMaze()
+    {
         this.nodes = GenerateGrid(mazeSize);
         this.completedNodes = new List<MazeNode>();
         
@@ -47,16 +54,48 @@ public class GrowingTreeMazeManager : MonoBehaviour
 
         // Add first node to list randomly
         AddRandomNode();
-
     }
 
-    private void Update() 
+    public void UpdateGTMaze()
     {
         if (!useSteps || (useSteps && currentSteps < steps))
         {
             GenerateMaze();
         }
     }
+
+    public IEnumerator IEnumGenerateMaze()
+    {
+        if (!useSteps || (useSteps && currentSteps < steps))
+        {
+            while (this.path.Count != 0 && !finishedMaze)
+            {
+                // Choose "active" node to check neighbors
+                MazeNode currentNode = ChooseActiveNode();
+
+                // Check every neighbor of node
+                List<Vector2> randomizedDirs = ShuffleList(DIRECTIONS);
+                MazeNode unvisitedNeighbor = FindUnvisitedNode(currentNode, randomizedDirs);
+
+                // if no unvisited neighbors found, delete from path list
+                if (unvisitedNeighbor == null)
+                {
+                    this.path.Remove(currentNode); 
+                    this.completedNodes.Add(currentNode);
+                    SetCompletedNode(currentNode);
+                }
+
+                currentSteps++;
+                yield return new WaitForSeconds(generationTick);
+            }
+            if (this.path.Count == 0 && !finishedMaze)
+            {
+                print("Finished");
+                this.finishedMaze = true;
+            }
+        }
+    }
+
 
     private void GenerateMaze()
     {
@@ -168,7 +207,7 @@ public class GrowingTreeMazeManager : MonoBehaviour
     }
 
 
-    private List<MazeNode> GenerateGrid(Vector2Int mazeSize)
+    public List<MazeNode> GenerateGrid(Vector2Int mazeSize)
     {
         List<MazeNode> nodes = new List<MazeNode>();
 
