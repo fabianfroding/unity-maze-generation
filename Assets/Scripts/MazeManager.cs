@@ -73,7 +73,7 @@ public class MazeManager : MonoBehaviour
             if (currentNodeX < mazeSize.x - 1)
             {
                 // Check node to right of current node.
-                // Checking plus size.y since we are iterating throuh the y-axis.
+                // Checking plus size.y since we are iterating through the y-axis.
                 if (!completedNodes.Contains(nodes[currentNodeIdx + mazeSize.y]) &&
                     !path.Contains(nodes[currentNodeIdx + mazeSize.y]))
                 {

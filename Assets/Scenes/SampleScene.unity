@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mazeGenerationMethod: 1
   nodePrefab: {fileID: 4027142190708988997, guid: 8adac624f1be3834099109fa0f11fec4, type: 3}
-  mazeSize: {x: 3, y: 8}
+  mazeSize: {x: 2, y: 15}
   generationTick: 0.05
 --- !u!114 &106350673
 MonoBehaviour:
@@ -184,12 +184,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c12b1c4eeb148c4fb1be89528ba487f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellSelectMethod: 0
+  cellSelectMethod: 2
   generationTick: 0.01
   useSteps: 0
   steps: 500
   currentSteps: 0
-  mazeSize: {x: 20, y: 12}
+  mazeSize: {x: 10, y: 10}
   nodePrefab: {fileID: 4027142190708988997, guid: 8adac624f1be3834099109fa0f11fec4, type: 3}
 --- !u!1 &705507993
 GameObject:
