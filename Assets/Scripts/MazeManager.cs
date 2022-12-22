@@ -10,7 +10,6 @@ public class MazeManager : MonoBehaviour
     [SerializeField] MazeNode nodePrefab;
     [SerializeField] Vector2Int mazeSize;
     [SerializeField] float generationTick = 0.05f;
-    // [SerializeField] bool generationTick = 0.05f;
 
     private GrowingTreeMazeManager growingTreeManager;
 
